@@ -69,6 +69,17 @@ const ThreeColumnRow = ({ data, class_name, ...rest }) => {
   );
 };
 
+const FourColumnRow = ({ data, class_name, ...rest }) => {
+  const className = class_name || 'col-md-3';
+  if (!data.childItems) {
+    // eslint-disable-next-line no-param-reassign
+    data.childItems = [null, null, null]; data.isContainer = true;
+  }
+  return (
+    <MultiColumnRowBase {...rest} className={className} data={data} />
+  );
+};
+
 const MultiColumnRow = ({ data, ...rest }) => {
   const colCount = data.col_count || 4;
   const className = data.class_name || (colCount === 4 ? 'col-md-3' : 'col');
@@ -80,4 +91,4 @@ const MultiColumnRow = ({ data, ...rest }) => {
   return <MultiColumnRowBase {...rest} className={className} data={data} />;
 };
 
-export { TwoColumnRow, ThreeColumnRow, MultiColumnRow };
+export { TwoColumnRow, ThreeColumnRow, FourColumnRow, MultiColumnRow };

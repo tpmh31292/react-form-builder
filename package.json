@@ -1,5 +1,5 @@
 {
-  "name": "react-form-builder2",
+  "name": "@clientdiary/react-form-builder2",
   "version": "0.18.4",
   "description": "A complete form builder for react.",
   "main": "lib/index.js",
@@ -28,11 +28,7 @@
   },
   "author": "Kiho Chang",
   "contributors": [
-    {
-      "name": "Zach Robichaud",
-      "email": "zach2825@gmail.com",
-      "url": "https://turtlebytes.com"
-    }
+    "Zach Robichaud <zach2825@gmail.com> (https://turtlebytes.com)"
   ],
   "dependencies": {
     "beedle": "^0.8.1",
@@ -110,5 +106,13 @@
     "serve:api": "node server/index.js",
     "pretranspile": "rimraf lib",
     "transpile": "babel --out-dir lib src --copy-files"
+  },
+  "bugs": {
+    "url": "https://github.com/kiho/react-form-builder/issues"
+  },
+  "homepage": "https://github.com/kiho/react-form-builder#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
   }
 }
