@@ -94,6 +94,14 @@ class Toolbar extends React.Component {
   _defaultItems(intl) {
     return [
       {
+        key: 'Logo',
+        name: intl.formatMessage({ id: 'logo' }),
+        label: '',
+        icon: 'far fa-image',
+        field_name: 'logo_',
+        src: '',
+      },
+      {
         key: 'Header',
         name: intl.formatMessage({ id: 'header-text' }),
         icon: 'fas fa-heading',
@@ -398,8 +406,12 @@ class Toolbar extends React.Component {
       elementOptions.class_name = item.class_name;
     }
 
-    if (elementKey === 'Image') {
+    if (elementKey === 'Image' || elementKey === 'Logo') {
       elementOptions.src = item.src;
+    }
+
+    if (elementKey === 'Logo') {
+      elementOptions.height = 150;
     }
 
     if (elementKey === 'DatePicker') {

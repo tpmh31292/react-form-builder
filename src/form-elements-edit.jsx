@@ -121,7 +121,7 @@ export default class FormElementsEdit extends React.Component {
     const {
       canHavePageBreakBefore, canHaveAlternateForm, canHaveDisplayHorizontal, canHaveOptionCorrect, canHaveOptionValue,
     } = this.props.element;
-    const canHaveImageSize = (this.state.element.element === 'Image' || this.state.element.element === 'Camera');
+    const canHaveImageSize = (this.state.element.element === 'Image' || this.state.element.element === 'Camera' || this.state.element.element === 'Logo');
 
     const this_files = this.props.files.length ? this.props.files : [];
     if (this_files.length < 1 || (this_files.length > 0 && this_files[0].id !== '')) {

@@ -521,6 +521,27 @@ class RadioButtons extends React.Component {
   }
 }
 
+class Logo extends React.Component {
+  render() {
+    const style = (this.props.data.center) ? { textAlign: 'center' } : null;
+
+    let baseClasses = 'SortableItem rfb-item';
+    if (this.props.data.pageBreakBefore) { baseClasses += ' alwaysbreak'; }
+
+    return (
+      <div style={{ ...this.props.style, ...style }} className={baseClasses} >
+        <ComponentHeader {...this.props} />
+        { this.props.data.src &&
+          <img src={this.props.data.src} width={this.props.data.width} height={this.props.data.height} />
+        }
+        { !this.props.data.src &&
+          <div className="no-image">No Image</div>
+        }
+      </div>
+    );
+  }
+}
+
 class Image extends React.Component {
   render() {
     const style = (this.props.data.center) ? { textAlign: 'center' } : null;
@@ -928,6 +949,7 @@ class Range extends React.Component {
   }
 }
 
+FormElements.Logo = Logo;
 FormElements.Header = Header;
 FormElements.Paragraph = Paragraph;
 FormElements.Label = Label;
