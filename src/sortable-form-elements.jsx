@@ -1,7 +1,7 @@
 import SortableElement from './sortable-element';
 import PlaceHolder from './form-place-holder';
 import BaseFormElements from './form-elements';
-import { TwoColumnRow, ThreeColumnRow, MultiColumnRow } from './multi-column';
+import { TwoColumnRow, ThreeColumnRow, FourColumnRow, MultiColumnRow } from './multi-column';
 import { FieldSet } from './fieldset';
 import CustomElement from './form-elements/custom-element';
 
@@ -39,6 +39,7 @@ FormElements.PlaceHolder = SortableElement(PlaceHolder);
 FormElements.FieldSet = SortableElement(FieldSet);
 FormElements.TwoColumnRow = SortableElement(TwoColumnRow);
 FormElements.ThreeColumnRow = SortableElement(ThreeColumnRow);
+FormElements.FourColumnRow = SortableElement(FourColumnRow);
 FormElements.MultiColumnRow = SortableElement(MultiColumnRow);
 FormElements.CustomElement = SortableElement(CustomElement);
 

@@ -230,14 +230,11 @@ class Toolbar extends React.Component {
       },
       {
         key: 'FourColumnRow',
-        element: 'MultiColumnRow',
         canHaveAnswer: false,
         name: intl.formatMessage({ id: 'four-columns-row' }),
         label: '',
         icon: 'fas fa-columns',
         field_name: 'four_col_row_',
-        col_count: 4,
-        class_name: 'col-md-3',
       },
       {
         key: 'FiveColumnRow',
