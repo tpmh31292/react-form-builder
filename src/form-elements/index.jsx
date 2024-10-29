@@ -5,6 +5,7 @@ import React from 'react';
 import Select from 'react-select';
 import SignaturePad from 'react-signature-canvas';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
+import Resizer from 'react-image-file-resizer';
 
 import StarRating from './star-rating';
 import DatePicker from './date-picker';
@@ -352,7 +353,17 @@ class Signature extends React.Component {
           <ComponentLabel {...this.props} />
           {this.props.read_only === true || !!sourceDataURL
             ? (<img src={sourceDataURL} />)
-            : (<SignaturePad {...pad_props} />)
+            : (<SignaturePad {...pad_props}
+                canvasProps={{
+                  width: 400,
+                  height: 200,
+                  className: 'sigCanvas',
+                  style: {
+                    border: '1px solid black',
+                    margin: 8
+                  }
+                }}
+              />)
           }
           {canClear && (
             <i className="fas fa-times clear-signature" onClick={this.clear} title="Clear Signature"></i>)}
@@ -636,11 +647,30 @@ class Camera extends React.Component {
     this.state = { img: null, previewImg: null };
   }
 
-  displayImage = (e) => {
+  resizeFile = (file) => new Promise(resolve => {
+    Resizer.imageFileResizer(file, 300, 300, 'JPEG', 100, 0,
+    uri => {
+      resolve(uri);
+    }, 'blob');
+  });
+
+  displayImage = async (e) => {
     const self = this;
     const target = e.target;
     if (target.files && target.files.length) {
-      self.setState({ img: target.files[0], previewImg: URL.createObjectURL(target.files[0]) });
+      let file = target.files[0];
+      const image = await this.resizeFile(file);
+      let reader = new FileReader();
+
+      reader.readAsDataURL(image);
+
+      reader.onloadend = function () {
+        self.setState({
+          img: reader.result,
+          previewImg: URL.createObjectURL(file)
+        });
+      };
+      // self.setState({ img: target.files[0], previewImg: URL.createObjectURL(target.files[0]) });
     }
   };
 
@@ -665,7 +695,8 @@ class Camera extends React.Component {
   }
 
   render() {
-    const imageStyle = { objectFit: 'scale-down', objectPosition: (this.props.data.center) ? 'center' : 'left' };
+    // const imageStyle = { objectFit: 'scale-down', objectPosition: (this.props.data.center) ? 'center' : 'left' };
+    const imageStyle = { width: 'auto' };
     let baseClasses = 'SortableItem rfb-item';
     const name = this.props.data.field_name;
     const fileInputStyle = this.state.img ? { display: 'none' } : null;
